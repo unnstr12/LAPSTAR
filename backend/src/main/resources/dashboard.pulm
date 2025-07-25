@@ -1,0 +1,95 @@
+@startuml
+title Biểu đồ trình tự - Admin Dashboard Controller
+
+actor "Admin User" as Admin
+participant "AdminDashboardController" as Controller
+participant "StatsService" as Service
+database "Database" as DB
+
+== Luồng chung cho các endpoint thống kê ==
+
+Admin -> Controller: GET /api/admin/stats/{endpoint}?timeRange&startDate&endDate
+activate Controller
+
+note right of Controller: @PreAuthorize("hasRole('ADMIN')")
+Controller -> Controller: Validate quyền Admin
+
+Controller -> Controller: Chuyển đổi timeRange từ String sang enum
+Controller -> Controller: Tạo StatsRequestDTO(timeRange, startDate, endDate)
+
+== Ví dụ với endpoint /overview ==
+Controller -> Service: getOverviewStats(request)
+activate Service
+
+Service -> DB: Truy vấn dữ liệu tổng quan
+activate DB
+DB --> Service: Kết quả thống kê
+deactivate DB
+
+Service --> Controller: OverviewStatsDTO
+deactivate Service
+
+Controller -> Controller: Tạo ApiResponse.success(data)
+Controller --> Admin: ResponseEntity<ApiResponse<?>>
+deactivate Controller
+
+== Các endpoint khác có luồng tương tự ==
+
+group Endpoint /revenue
+    Admin -> Controller: GET /api/admin/stats/revenue
+    Controller -> Service: getRevenueStats(request)
+    Service --> Controller: List<TimeSeriesDataDTO>
+    Controller --> Admin: ResponseEntity với dữ liệu doanh thu
+end
+
+group Endpoint /sold-products  
+    Admin -> Controller: GET /api/admin/stats/sold-products
+    Controller -> Service: getSoldProductsStats(request)
+    Service --> Controller: List<TimeSeriesDataDTO>
+    Controller --> Admin: ResponseEntity với dữ liệu sản phẩm đã bán
+end
+
+group Endpoint /orders-by-status
+    Admin -> Controller: GET /api/admin/stats/orders-by-status
+    Controller -> Service: getOrdersByStatus(request)
+    Service --> Controller: List<OrderStatusStatsDTO>
+    Controller --> Admin: ResponseEntity với thống kê đơn hàng theo trạng thái
+end
+
+group Endpoint /recent-orders
+    Admin -> Controller: GET /api/admin/stats/recent-orders
+    Controller -> Service: getRecentOrders(request, 10)
+    Service --> Controller: List<RecentOrderDTO>
+    Controller --> Admin: ResponseEntity với đơn hàng gần đây
+end
+
+group Endpoint /top-products
+    Admin -> Controller: GET /api/admin/stats/top-products
+    Controller -> Service: getTopProducts(request, 5)
+    Service --> Controller: List<TopProductDTO>
+    Controller --> Admin: ResponseEntity với top sản phẩm bán chạy
+end
+
+group Endpoint /top-revenue-products
+    Admin -> Controller: GET /api/admin/stats/top-revenue-products
+    Controller -> Service: getTopRevenueProducts(request, 5)
+    Service --> Controller: List<TopRevenueProductDTO>
+    Controller --> Admin: ResponseEntity với top sản phẩm theo doanh thu
+end
+
+group Endpoint /products-by-category
+    Admin -> Controller: GET /api/admin/stats/products-by-category
+    Controller -> Service: getProductsByCategory(request)
+    Service --> Controller: List<CategoryStatsDTO>
+    Controller --> Admin: ResponseEntity với thống kê theo danh mục
+end
+
+group Endpoint /product-stats (khác biệt)
+    Admin -> Controller: GET /api/admin/stats/product-stats?productId&days
+    note right of Controller: Không sử dụng StatsRequestDTO
+    Controller -> Service: getProductStats(productId, days)
+    Service --> Controller: ProductStatsDTO
+    Controller --> Admin: ResponseEntity với thống kê sản phẩm cụ thể
+end
+
+@enduml

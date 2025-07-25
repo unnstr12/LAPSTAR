@@ -1,0 +1,499 @@
+/* Các style chung cho trang Profile */
+.profile-page-area {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.profile-sidebar {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.profile-sidebar-header {
+    background-color: var(--main-color);
+    padding: 30px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: #fff;
+}
+
+.profile-email {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.profile-sidebar-menu {
+    padding: 0;
+}
+
+.profile-sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-sidebar-menu li {
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.profile-sidebar-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #555;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.profile-sidebar-menu li a:hover {
+    color: var(--main-color);
+    background-color: rgba(30, 55, 194, 0.05);
+}
+
+.profile-sidebar-menu li.active a {
+    color: var(--main-color);
+    background-color: rgba(30, 55, 194, 0.1);
+    font-weight: 600;
+}
+
+.profile-sidebar-menu li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Content styles */
+.profile-section-title {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-section-title h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--heading-color);
+}
+
+/* Form styles */
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.profile-form .form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.profile-form .invalid-feedback {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.btn-save {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: var(--main-color-hover);
+    transform: translateY(-2px);
+}
+
+.btn-save:disabled {
+    background-color: #9aa3e9;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Avatar section */
+.profile-avatar-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-avatar-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    margin-right: 25px;
+}
+
+.profile-avatar-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+/* Media queries */
+@media (max-width: 991px) {
+    .profile-sidebar {
+        margin-bottom: 30px;
+    }
+    
+    .profile-content {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-content {
+        padding: 20px 15px;
+    }
+    
+    .profile-avatar-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-avatar-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .profile-page-area {
+        padding-top: 100px;
+    }
+}
+
+/* CSS cho các badge trạng thái đơn hàng */
+.order-status-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.order-status-confirmed {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.order-status-shipping {
+    background-color: #007bff;
+    color: white;
+}
+
+.order-status-delivered, .order-status-completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.order-status-cancelled, .order-status-returned {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* CSS cho modal chi tiết đơn hàng */
+.order-details-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.order-details-modal .modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.order-details-modal .modal-content {
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    border: none;
+    overflow: hidden;
+}
+
+.order-details-modal .modal-header {
+    background-color: var(--main-color);
+    color: white;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.order-details-modal .modal-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0;
+    color: white;
+}
+
+.order-details-modal .close {
+    color: white;
+    opacity: 0.8;
+    text-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.order-details-modal .close:hover {
+    opacity: 1;
+}
+
+.order-details-modal .modal-body {
+    padding: 20px;
+}
+
+.order-details-modal .modal-footer {
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Bảng chi tiết đơn hàng */
+.order-details-content h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+}
+
+.order-details-content .table {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+}
+
+.order-details-content .table-bordered {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.order-details-content .table th {
+    background-color: #f9fafb;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.order-details-content .table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    font-size: 14px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.order-details-content .table-sm td, 
+.order-details-content .table-sm th {
+    padding: 10px 15px;
+}
+
+.order-details-content .table tfoot {
+    background-color: #f9fafb;
+    font-weight: 600;
+}
+
+.order-details-content .text-right {
+    text-align: right;
+}
+
+.order-details-content .text-center {
+    text-align: center;
+}
+
+/* Status badges */
+.admin-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 90px;
+}
+
+.admin-badge-warning {
+    background-color: #fff8e1;
+    color: #f57c00;
+}
+
+.admin-badge-info {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.admin-badge-primary {
+    background-color: #e8eaf6;
+    color: #3f51b5;
+}
+
+.admin-badge-success {
+    background-color: #e8f5e9;
+    color: #388e3c;
+}
+
+.admin-badge-danger {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.admin-badge-secondary {
+    background-color: #f5f5f5;
+    color: #616161;
+}
+
+/* Timeline styles */
+.order-timeline {
+    padding: 20px 0;
+}
+
+.timeline-items {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--main-color);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #e9ecef;
+    z-index: 1;
+}
+
+.timeline-marker.cancelled, 
+.timeline-marker.returned {
+    background: #dc3545;
+}
+
+.timeline-content {
+    padding-left: 15px;
+}
+
+.timeline-content h6 {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.timeline-content p {
+    margin-bottom: 0;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .order-details-modal .table {
+        font-size: 13px;
+    }
+    
+    .order-details-modal .modal-dialog {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+    
+    .timeline-content h6 {
+        font-size: 14px;
+    }
+    
+    .timeline-content p {
+        font-size: 12px;
+    }
+    
+    .order-details-content .table td,
+    .order-details-content .table th {
+        padding: 8px;
+    }
+}
+
+/* CSS cho bảng trong tab orders */
+.profile-orders .table {
+    margin-bottom: 30px;
+}
+
+.profile-orders .badge {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.profile-orders .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 5px;
+}
+
+/* Responsive cho bảng */
+@media (max-width: 767px) {
+    .profile-orders .table {
+        font-size: 0.85rem;
+    }
+    
+    .profile-orders .btn-sm {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+    }
+} 

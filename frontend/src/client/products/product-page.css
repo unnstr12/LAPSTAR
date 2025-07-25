@@ -1,0 +1,331 @@
+/* Định dạng header với title và sorting options */
+.header-shadow-inner {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.sorting-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.sort-btn {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sort-btn:hover {
+  background: #e9e9e9;
+}
+
+.sort-btn.active {
+  background: var(--main-color);
+  color: white;
+  border-color: var(--main-color);
+}
+
+/* Định dạng container bộ lọc */
+.filter-container {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  border: 2px solid #eaeaea;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+/* Nút xóa tất cả bộ lọc */
+.filter-header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.clear-filters-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #4E7DF1;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.clear-filters-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.clear-filters-btn i {
+  font-size: 12px;
+}
+
+.filter-section {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+}
+
+.filter-title {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-option input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.filter-option label {
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+/* Định dạng bộ lọc giá */
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Định dạng nhập giá */
+.price-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.price-input-container {
+  position: relative;
+  flex: 1;
+}
+
+.price-input {
+  width: 100%;
+  padding: 8px 25px 8px 10px;
+  border: 1px solid #ddd;
+  border-radius:20px;
+  font-size: 14px;
+}
+
+.price-currency {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.price-separator {
+  font-size: 18px;
+  color: #666;
+  margin: 0 4px;
+}
+
+/* Không giới hạn giá tối đa */
+.no-max-price-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.no-max-price-option input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.no-max-price-option label {
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 0;
+  color: #666;
+}
+
+/* Styles cho thanh trượt (range slider) */
+.price-range-container {
+  position: relative;
+  height: 30px;
+  margin: 15px 0 5px;
+}
+
+.price-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-appearance: none;
+  height: 5px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #4E7DF1;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.price-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #4E7DF1;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.price-range-track {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 12px;
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.apply-price-btn {
+  padding: 8px;
+  background: #4E7DF1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.apply-price-btn:hover {
+  background: #3a6ad4;
+}
+
+/* Định dạng responsive */
+@media (max-width: 991px) {
+  .header-shadow-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .sorting-options {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-container {
+    margin-bottom: 20px;
+  }
+  
+  .sort-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .price-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .price-separator {
+    display: none;
+  }
+}
+
+.filter-buttons {
+	display: flex;
+	gap: 8px;
+	margin-top: 15px;
+	flex-wrap: wrap;
+}
+
+.filter-buttons .admin-btn {
+	flex: 1;
+	min-width: 120px;
+}
+
+/* Pulse animation for apply button when there are unapplied changes */
+.pulse {
+	animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+	0% {
+		box-shadow: 0 0 0 0px rgba(78, 125, 241, 0.7);
+	}
+	70% {
+		box-shadow: 0 0 0 10px rgba(78, 125, 241, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0px rgba(78, 125, 241, 0);
+	}
+}
+
+/* Responsive adjustments for filter buttons */
+@media (max-width: 768px) {
+	.filter-buttons {
+		flex-direction: column;
+	}
+	
+	.filter-buttons .admin-btn {
+		flex: none;
+		width: 100%;
+	}
+} 

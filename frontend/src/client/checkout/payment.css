@@ -1,0 +1,142 @@
+/* Payment Success/Error Page Styling */
+.success-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+}
+
+.success-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.success-container.success {
+    border-top: 5px solid #1e37c2;
+}
+
+.success-container.error {
+    border-top: 5px solid #F22970;
+}
+
+.success-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.success-container.success .success-icon {
+    color: #1e37c2;
+}
+
+.success-container.error .success-icon {
+    color: #F22970;
+}
+
+.success-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0d1741;
+}
+
+.success-message {
+    font-size: 16px;
+    color: #565872;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.order-id {
+    background-color: #f5f7ff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.order-id span {
+    font-weight: 700;
+    color: #1e37c2;
+}
+
+.success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.success-actions .btn {
+    padding: 12px 25px;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #1e37c2;
+    border-color: #1e37c2;
+}
+
+.btn-primary:hover {
+    background-color: #142790;
+    border-color: #142790;
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background-color: #ff9500;
+    border-color: #ff9500;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background-color: #e68600;
+    border-color: #e68600;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    color: #565872;
+    border-color: #d1d5db;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f5f7ff;
+    color: #1e37c2;
+    border-color: #1e37c2;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .success-container {
+        padding: 30px 20px;
+    }
+    
+    .success-title {
+        font-size: 24px;
+    }
+    
+    .success-icon {
+        font-size: 60px;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+    }
+    
+    .success-actions .btn {
+        width: 100%;
+    }
+} 

@@ -1,0 +1,162 @@
+/* Product Gallery Styles */
+.product-gallery {
+    margin-bottom: 30px;
+}
+
+.product-gallery-main {
+    background-color: #f9fafb;
+    border-radius: 25px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.product-gallery-main .main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+    max-height: 480px;
+}
+
+.product-gallery-main:hover .main-image {
+    transform: scale(1.02);
+}
+
+.product-gallery-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.thumb-item {
+    width: 93px;
+    height: 72px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.thumb-item:hover, .thumb-item.active {
+    border: 1px solid #757e8d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thumb-item.active:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(30, 55, 194, 0.1);
+    pointer-events: none;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .product-gallery-main {
+        max-height: 350px;
+    }
+    
+    .product-gallery-main .main-image {
+        max-height: 350px;
+    }
+    
+    .thumb-item {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-gallery-main {
+        max-height: 300px;
+    }
+    
+    .product-gallery-main .main-image {
+        max-height: 300px;
+    }
+    
+    .thumb-item {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Lightbox Style for large image view */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.lightbox .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.lightbox .prev-btn,
+.lightbox .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox .prev-btn {
+    left: 20px;
+}
+
+.lightbox .next-btn {
+    right: 20px;
+}

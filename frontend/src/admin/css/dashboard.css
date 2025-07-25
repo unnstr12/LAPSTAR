@@ -1,0 +1,269 @@
+/* Dashboard CSS - Sử dụng lại các class từ các file CSS khác */
+
+.dashboard-container {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 25px;
+}
+
+.dashboard-welcome {
+  margin-top: 5px;
+  color: #667085;
+  margin-bottom: 0;
+}
+
+.time-range-selector {
+  display: flex;
+  gap: 10px;
+}
+
+.time-range-info {
+  font-size: 14px;
+  color: #555b68;
+}
+
+.dashboard-layout {
+  display: flex;
+  gap: 25px;
+}
+
+.dashboard-main-content {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.dashboard-sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.chart-card {
+  padding: 20px;
+}
+
+.chart-container {
+  margin-top: 10px;
+}
+
+/* Custom Date Range */
+.custom-date-range {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-date-form .form-row {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.custom-date-form .btn-container {
+  flex: 0 0 auto;
+  min-width: auto;
+}
+
+.custom-date-form .form-group {
+    display: flex;
+    flex: 1 0;
+    align-items: center;
+}
+
+.custom-date-form .date-label {
+    min-width: 70px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+.custom-date-form .form-control {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  transition: border-color .25s ease-in-out, box-shadow .25s ease-in-out;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Top Products */
+.top-products-list {
+  margin-top: 15px;
+}
+
+.top-product-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.top-product-item:last-child {
+  border-bottom: none;
+}
+
+.rank-badge {
+  position: absolute;
+  top: 15px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.top-product-item .product-thumbnail {
+  width: 80px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.top-product-item .product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.top-product-item .product-info {
+  flex: 1;
+}
+
+.top-product-item .product-name {
+  font-size: 14px;
+}
+
+.top-product-item .product-price {
+  color: var(--main-color);
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.top-product-item .product-sold {
+  font-size: 12px;
+  color: #666;
+}
+
+/* New users */
+.new-users-list {
+  margin-top: 15px;
+}
+
+.new-user-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.new-user-item:last-child {
+  border-bottom: none;
+}
+
+.new-user-item .user-avatar {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.new-user-item .user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.new-user-item .user-info {
+  flex: 1;
+}
+
+.new-user-item .user-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.new-user-item .user-email {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.new-user-item .user-joined {
+  font-size: 12px;
+  color: #888;
+}
+
+/* View all link */
+.view-all-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  
+  .dashboard-main-content,
+  .dashboard-sidebar {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-range-selector {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .top-product-item .product-thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .custom-date-form .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .custom-date-form .form-group {
+    width: 100%;
+  }
+} 
