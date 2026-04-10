@@ -32,11 +32,11 @@ public class EmailServiceImpl implements EmailService {
     
     @Override
     public void sendPasswordResetLink(String to, String resetLink) {
-        String subject = "[LapVN] Đặt lại mật khẩu tài khoản";
+        String subject = "[LapStar] Đặt lại mật khẩu tài khoản";
         
         String htmlContent = 
                 "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>" +
-                "<h2 style='color:rgb(28, 47, 170);'>Đặt lại mật khẩu LapVN</h2>" +
+                "<h2 style='color:rgb(28, 47, 170);'>Đặt lại mật khẩu LapStar</h2>" +
                 "<p>Chào bạn,</p>" +
                 "<p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn. " +
                 "Vui lòng nhấp vào liên kết dưới đây để đặt lại mật khẩu:</p>" +
@@ -48,7 +48,7 @@ public class EmailServiceImpl implements EmailService {
                 "<p style='word-break: break-all; color: rgb(28, 47, 170);'>" + resetLink + "</p>" +
                 "<p>Liên kết này sẽ hết hạn sau 30 phút.</p>" +
                 "<p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>" +
-                "<p>Trân trọng,<br>Đội ngũ LapVN</p>" +
+                "<p>Trân trọng,<br>Đội ngũ LapStar</p>" +
                 "</div>";
                 
         sendHtmlEmail(to, subject, htmlContent);

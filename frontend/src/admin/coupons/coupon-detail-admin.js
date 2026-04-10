@@ -5,8 +5,8 @@ import '../../utils/axiosConfig';
 import '../css/product-detail-admin.css';
 
 const CouponDetailPage = () => {
-  const { id } = useParams();
-  const history = useHistory();
+  const { id } = useParams(); //lấy id từ url
+  const history = useHistory();  //điều hướng chuyển trang
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [coupon, setCoupon] = useState({
@@ -21,6 +21,7 @@ const CouponDetailPage = () => {
 
   const [formattedDiscountValue, setFormattedDiscountValue] = useState('0');
   const [formattedMinimumOrderAmount, setFormattedMinimumOrderAmount] = useState('');
+  
   const [toasts, setToasts] = useState([]);
 
   const showToast = (message, type = 'success') => {

@@ -76,12 +76,10 @@ class Root extends Component {
 											<Route exact path="/admin">
 												<Redirect to="/admin/products" />
 											</Route>
-											
 											{/* Dashboard - chỉ ADMIN */}
 											<ProtectedRoute exact path="/admin/dashboard" roles={['ADMIN']}>
 												<Dashboard />
 											</ProtectedRoute>
-											
 											{/* Products - ADMIN và SELLER */}
 											<ProtectedRoute exact path="/admin/products" roles={['ADMIN', 'SELLER']}>
 												<ProductListAdmin />
@@ -92,7 +90,6 @@ class Root extends Component {
 											<ProtectedRoute exact path="/admin/products/:id" roles={['ADMIN', 'SELLER']}>
 												<ProductDetailAdmin />
 											</ProtectedRoute>
-											
 											{/* Users - chỉ ADMIN */}
 											<ProtectedRoute exact path="/admin/users" roles={['ADMIN']}>
 												<UserListAdmin />
@@ -100,7 +97,6 @@ class Root extends Component {
 											<ProtectedRoute exact path="/admin/users/:id" roles={['ADMIN']}>
 												<UserDetailAdmin />
 											</ProtectedRoute>
-											
 											{/* Orders - ADMIN và SELLER */}
 											<ProtectedRoute exact path="/admin/orders" roles={['ADMIN', 'SELLER']}>
 												<OrderListAdmin />
@@ -108,7 +104,6 @@ class Root extends Component {
 											<ProtectedRoute exact path="/admin/orders/:id" roles={['ADMIN', 'SELLER']}>
 												<OrderDetailAdmin />
 											</ProtectedRoute>
-											
 											{/* Coupons - ADMIN và SELLER có thể xem, chỉ ADMIN có thể thêm */}
 											<ProtectedRoute exact path="/admin/coupons" roles={['ADMIN', 'SELLER']}>
 												<CouponListAdmin />
@@ -134,6 +129,6 @@ class Root extends Component {
 	}
 }
 
-export default Root;
+const renderRoot = () => ReactDOM.render(<Root />, document.getElementById('lapstar'));
 
-ReactDOM.render(<Root />, document.getElementById('laptop-world'));
+renderRoot();

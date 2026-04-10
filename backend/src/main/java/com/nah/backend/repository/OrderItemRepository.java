@@ -15,4 +15,4 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
     // Đếm số lượng sản phẩm đã bán
     @Query("SELECT SUM(oi.quantity) FROM OrderItem oi WHERE oi.product.productId = :productId AND oi.order.status <> 'CANCELLED'")
     Integer countSoldProducts(Integer productId);
-} 
+}

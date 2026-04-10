@@ -137,8 +137,7 @@ const AdminLayout = ({ children }) => {
       return true; // Nếu không yêu cầu quyền đặc biệt, hiển thị cho tất cả
     }
     // Kiểm tra xem user có ít nhất một trong các quyền yêu cầu không
-    const hasRequiredRole = item.requiredRoles.some(role => hasRole(role));
-    return hasRequiredRole;
+    return item.requiredRoles.some(role => hasRole(role));
   });
 
   const isActive = (path) => {
@@ -172,7 +171,7 @@ const AdminLayout = ({ children }) => {
       <aside className={sidebarClass}>
         <div className="sidebar-header">
           <Link to="/" className="admin-logo">
-            {isSidebarCollapsed ? 'LW' : 'LapVN Admin'}
+            {isSidebarCollapsed ? 'LS' : 'LapStar Admin'}
           </Link>
           <button
             className="sidebar-toggle-btn"
@@ -197,7 +196,7 @@ const AdminLayout = ({ children }) => {
         </nav>
 
         <div className="sidebar-footer">
-          {!isSidebarCollapsed && <span>© 2025 LapVN</span>}
+          {!isSidebarCollapsed && <span>© 2025 LapStar</span>}
           <a href="#" onClick={handleLogout} title="Đăng xuất" className={isLoggingOut ? 'disabled-link' : ''}>
             <i className="fa fa-sign-out-alt"></i>
             {isLoggingOut && <span className="logout-spinner"></span>}
@@ -232,7 +231,7 @@ const AdminLayout = ({ children }) => {
           >
             <i className="fa fa-bars"></i>
           </button>
-          <div style={{ marginLeft: '15px', fontWeight: 600 }}>LapVN Admin</div>
+          <div style={{ marginLeft: '15px', fontWeight: 600 }}>LapStar Admin</div>
           <div style={{ marginLeft: 'auto' }}>
             {currentUser && (
               <span>{currentUser.fullName} &nbsp;

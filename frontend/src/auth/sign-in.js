@@ -53,7 +53,12 @@ class SignIn extends Component {
                 this.props.history.push('/admin');
             } else {
                 console.log("Đang điều hướng đến:", from.pathname);
-                this.props.history.push(from.pathname);
+                // this.props.history.push(from.pathname);
+                if (from.pathname.startsWith('/admin')) {
+                    this.props.history.push('/admin/dashboard');
+                } else {
+                    this.props.history.push('/');
+                }
             }
         } catch (error) {
             console.error("Lỗi đăng nhập:", error);

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LapVNApplication {
+public class LapStarApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LapVNApplication.class, args);
+        SpringApplication.run(LapStarApplication.class, args);
     }
 
 }

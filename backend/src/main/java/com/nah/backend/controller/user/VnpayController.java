@@ -87,7 +87,7 @@ public class VnpayController {
             }
             
             // Kiểm tra hash và mã phản hồi
-                String vnp_ResponseCode = fields.get("vnp_ResponseCode");                
+                String vnp_ResponseCode = fields.get("vnp_ResponseCode");
                 // Cập nhật trạng thái thanh toán
                 if ("00".equals(vnp_ResponseCode) && orderId != null) {
                     vnpayService.handlePaymentReturn(vnp_ResponseCode, orderId);

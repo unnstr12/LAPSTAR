@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/global-components/navbar-v2';
+
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class SignUp extends Component {
             loading: false
         };
     }
-
+//Handlechange dùng để cập nhật dữ liệu vào state, chạy khi ng dùng tích vào checkbox
     handleChange = (e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         this.setState({
@@ -24,7 +24,7 @@ class SignUp extends Component {
             error: ''
         });
     }
-
+//này thì kiểm tra data có hợp lệ hay không, chạy khi nhất gửi
     validateForm = () => {
         const { fullName, email, password, confirmPassword, agreeTerms } = this.state;
 

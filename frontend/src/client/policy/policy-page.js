@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
 
 class Policy extends Component {
 
 	render() {
 
-		let publicUrl = process.env.PUBLIC_URL+'/'
-
 	return  <section className="policy-page-area pd-top-100 pd-bottom-100">
 			<div className="container">
 				<div className="row justify-content-center">
 				<div className="col-lg-8">
-					<h2 className="text-center mb-4">Chính sách và Điều khoản - LapVN</h2>
-					
+					<h2 className="text-center mb-4">Chính sách và Điều khoản - LapStar</h2>
+
 					<h4>1. Chính sách đổi trả sản phẩm</h4>
-					<p>LapVN cam kết đảm bảo quyền lợi của khách hàng với chính sách đổi trả minh bạch và hợp lý:</p>
+					<p>LapStar cam kết đảm bảo quyền lợi của khách hàng với chính sách đổi trả minh bạch và hợp lý:</p>
 					<ul>
 					<li><strong>Thời gian đổi trả:</strong> Trong vòng 7 ngày kể từ ngày nhận hàng đối với sản phẩm bị lỗi từ nhà sản xuất.</li>
 					<li><strong>Điều kiện đổi trả:</strong> Sản phẩm còn nguyên vẹn, chưa qua sử dụng, đầy đủ phụ kiện và hóa đơn mua hàng.</li>
 					<li><strong>Sản phẩm được đổi trả:</strong> Laptop, bàn phím, tai nghe và các phụ kiện bị lỗi kỹ thuật từ nhà sản xuất.</li>
-					<li><strong>Chi phí đổi trả:</strong> LapVN sẽ chịu toàn bộ chi phí vận chuyển cho các sản phẩm lỗi từ nhà sản xuất.</li>
+					<li><strong>Chi phí đổi trả:</strong> LapStar sẽ chịu toàn bộ chi phí vận chuyển cho các sản phẩm lỗi từ nhà sản xuất.</li>
 					</ul>
 
 					<h4>2. Chính sách bảo hành</h4>
-					<p>Tất cả sản phẩm tại LapVN đều được bảo hành chính hãng theo tiêu chuẩn quốc tế:</p>
+					<p>Tất cả sản phẩm tại LapStar đều được bảo hành chính hãng theo tiêu chuẩn quốc tế:</p>
 					<ul>
 					<li><strong>Laptop:</strong> Bảo hành 12-24 tháng tùy theo thương hiệu và model.</li>
 					<li><strong>Bàn phím cơ:</strong> Bảo hành 12 tháng đối với lỗi kỹ thuật.</li>
@@ -34,7 +30,7 @@ class Policy extends Component {
 					<p>Bảo hành không áp dụng cho các trường hợp: Rơi vỡ, ngấm nước, tự ý sửa chữa, sử dụng sai mục đích.</p>
 
 					<h4>3. Chính sách giao hàng</h4>
-					<p>LapVN cung cấp dịch vụ giao hàng toàn quốc với cam kết nhanh chóng và an toàn:</p>
+					<p>LapStar cung cấp dịch vụ giao hàng toàn quốc với cam kết nhanh chóng và an toàn:</p>
 					<ul>
 					<li><strong>Nội thành Hà Nội:</strong> Giao hàng trong 1-2 giờ, phí ship 30.000đ.</li>
 					<li><strong>Tỉnh thành khác:</strong> Giao hàng trong 1-3 ngày làm việc, phí ship theo khoảng cách.</li>
@@ -43,7 +39,7 @@ class Policy extends Component {
 					</ul>
 
 					<h4>4. Chính sách thanh toán</h4>
-					<p>LapVN hỗ trợ đa dạng hình thức thanh toán để thuận tiện cho khách hàng:</p>
+					<p>LapStar hỗ trợ đa dạng hình thức thanh toán để thuận tiện cho khách hàng:</p>
 					<ul>
 					<li>Thanh toán khi nhận hàng (COD)</li>
 					<li>Chuyển khoản ngân hàng</li>
@@ -52,7 +48,7 @@ class Policy extends Component {
 					</ul>
 
 					<h4>5. Chính sách bảo mật thông tin</h4>
-					<p>LapVN cam kết bảo vệ thông tin cá nhân của khách hàng:</p>
+					<p>LapStar cam kết bảo vệ thông tin cá nhân của khách hàng:</p>
 					<ul>
 					<li>Không chia sẻ thông tin cá nhân với bên thứ ba khi chưa có sự đồng ý.</li>
 					<li>Sử dụng công nghệ mã hóa SSL để bảo vệ dữ liệu giao dịch.</li>
@@ -61,7 +57,7 @@ class Policy extends Component {
 					</ul>
 
 					<h4>6. Điều khoản sử dụng website</h4>
-					<p>Khi sử dụng website LapVN, quý khách vui lòng tuân thủ các quy định sau:</p>
+					<p>Khi sử dụng website LapStar, quý khách vui lòng tuân thủ các quy định sau:</p>
 					<ul>
 					<li>Không sử dụng website cho mục đích bất hợp pháp hoặc gây tổn hại.</li>
 					<li>Cung cấp thông tin chính xác khi đặt hàng và đăng ký tài khoản.</li>
@@ -78,9 +74,9 @@ class Policy extends Component {
 					<li><strong>Thời gian hỗ trợ:</strong> 8:00 - 22:00 tất cả các ngày trong tuần</li>
 					</ul>
 
-					<p>LapVN có quyền thay đổi các điều khoản và chính sách này mà không cần báo trước. Phiên bản cập nhật sẽ được đăng tải trên website và có hiệu lực ngay lập tức.</p>
-					
-					<p className="m-0"><em>Cập nhật lần cuối: Tháng 05/2025. Bằng việc sử dụng dịch vụ của LapVN, quý khách đã đồng ý với toàn bộ các điều khoản và chính sách trên.</em></p>
+					<p>LapStar có quyền thay đổi các điều khoản và chính sách này mà không cần báo trước. Phiên bản cập nhật sẽ được đăng tải trên website và có hiệu lực ngay lập tức.</p>
+
+					<p className="m-0"><em>Cập nhật lần cuối: Tháng 05/2025. Bằng việc sử dụng dịch vụ của LapStar, quý khách đã đồng ý với toàn bộ các điều khoản và chính sách trên.</em></p>
 				</div>
 				</div>
 			</div>

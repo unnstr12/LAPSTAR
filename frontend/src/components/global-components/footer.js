@@ -15,7 +15,6 @@ class Footer_v1 extends Component {
 	render() {
 
 		let publicUrl = process.env.PUBLIC_URL + '/'
-		let imgattr = "Footer logo"
 
 		return (
 			<footer className="footer-area pd-top-100">
@@ -62,8 +61,8 @@ class Footer_v1 extends Component {
 								<h4 className="widget-title">Liên kết hữu ích</h4>
 								<ul className="go-top">
 									<li><Link to="/cart">Giỏ hàng</Link></li>
-									<li><Link to="/sign-in">Đăng nhập</Link></li>
-									<li><Link to="/sign-up">Đăng ký</Link></li>
+									<li><Link to="/login">Đăng nhập</Link></li>
+									<li><Link to="/register">Đăng ký</Link></li>
 									<li><Link to="/contact">Liên hệ</Link></li>
 								</ul>
 							</div>
@@ -72,9 +71,9 @@ class Footer_v1 extends Component {
 							<div className="footer-widget widget widget widget_products">
 								<h4 className="widget-title">Sản phẩm</h4>
 								<ul className="go-top">
-									<li><Link to="/laptop">Laptop</Link></li>
-									<li><Link to="/tai-nghe">Bàn phím</Link></li>
-									<li><Link to="/ban-phim">Tai nghe</Link></li>
+									<li><Link to="/product">Laptop</Link></li>
+									<li><Link to="/product">Bàn phím</Link></li>
+									<li><Link to="/product">Tai nghe</Link></li>
 								</ul>
 							</div>
 						</div>
@@ -102,7 +101,7 @@ class Footer_v1 extends Component {
 					<div className="copyright-area">
 						<div className="row">
 							<div className="col-lg-6 align-self-center">
-								<p>©2025 LaptopVN. Bản quyền thuộc về Nhóm 11. </p>
+								<p>©2025 LapStar. Bản quyền thuộc về LapStar. </p>
 							</div>
 							<div className="col-lg-6 text-lg-right">
 								<ul>
@@ -110,7 +109,7 @@ class Footer_v1 extends Component {
 										<Link to="/">Trang chủ</Link>
 									</li>
 									<li>
-										<Link to="/laptop">Sản phẩm</Link>
+										<Link to="/product">Sản phẩm</Link>
 									</li>
 									<li>
 										<Link to="/blog">Tin tức</Link>
@@ -124,11 +123,9 @@ class Footer_v1 extends Component {
 					</div>
 				</div>
 			</footer>
-
-
 		)
 	}
 }
 
-
 export default Footer_v1
+

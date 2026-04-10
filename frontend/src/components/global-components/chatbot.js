@@ -29,7 +29,7 @@ const Chatbot = () => {
         return [
             {
                 id: 1,
-                text: "Xin chào! Tôi là trợ lý ảo của LapVN. Tôi có thể giúp bạn tìm hiểu về các sản phẩm laptop. Bạn có câu hỏi gì không?",
+                text: "Xin chào! Tôi là trợ lý ảo của LapStar. Tôi có thể giúp bạn tìm hiểu về các sản phẩm laptop. Bạn có câu hỏi gì không?",
                 isBot: true,
                 timestamp: new Date()
             }
@@ -54,7 +54,7 @@ const Chatbot = () => {
     const clearChatHistory = () => {
         const defaultMessage = {
             id: 1,
-            text: "Xin chào! Tôi là trợ lý ảo của LapVN. Tôi có thể giúp bạn tìm hiểu về các sản phẩm laptop. Bạn có câu hỏi gì không?",
+            text: "Xin chào! Tôi là trợ lý ảo của LapStar. Tôi có thể giúp bạn tìm hiểu về các sản phẩm laptop. Bạn có câu hỏi gì không?",
             isBot: true,
             timestamp: new Date()
         };
@@ -360,7 +360,7 @@ const Chatbot = () => {
                             <i className="fas fa-laptop"></i>
                         </div>
                         <div className="bot-details">
-                            <h3>Trợ lý LapVN</h3>
+                            <h3>Trợ lý LapStar</h3>
                             <span className="status">
                                 <span className="status-dot"></span>
                                 Đang hoạt động
@@ -426,7 +426,7 @@ const Chatbot = () => {
                         <textarea
                             value={inputMessage}
                             onChange={(e) => setInputMessage(e.target.value)}
-                            onKeyPress={handleKeyPress}
+                            onKeyDown={handleKeyPress}
                             placeholder="Nhập câu hỏi của bạn..."
                             disabled={isLoading}
                             rows="1"
@@ -448,4 +448,4 @@ const Chatbot = () => {
     );
 };
 
-export default Chatbot; 
+export default Chatbot;
