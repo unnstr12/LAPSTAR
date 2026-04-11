@@ -81,15 +81,15 @@ class Footer_v1 extends Component {
 							<div className="footer-widget widget widget_news">
 								<h4 className="widget-title">Tin tức mới nhất</h4>
 								<div className="widget-news-wrap">
-									<div className="date">15/12/2024</div>
-									<p> <Link to="/blog-details">Top 5 laptop gaming tốt nhất 2024</Link> </p>
+									<div className="date">15/5/2026</div>
+									<p> <Link to="/blog-details">Top 5 laptop gaming tốt nhất 2026</Link> </p>
 								</div>
 								<div className="widget-news-wrap">
-									<div className="date">12/12/2024</div>
+									<div className="date">12/5/2026</div>
 									<p> <Link to="/blog-details">Hướng dẫn chọn laptop phù hợp</Link> </p>
 								</div>
 								<div className="widget-news-wrap">
-									<div className="date">10/12/2024</div>
+									<div className="date">10/5/2026</div>
 									<p> <Link to="/blog-details">Khuyến mãi cuối năm</Link> </p>
 								</div>
 							</div>
@@ -101,7 +101,7 @@ class Footer_v1 extends Component {
 					<div className="copyright-area">
 						<div className="row">
 							<div className="col-lg-6 align-self-center">
-								<p>©2025 LapStar. Bản quyền thuộc về LapStar. </p>
+								<p>©2026 LapStar. Bản quyền thuộc về LapStar. </p>
 							</div>
 							<div className="col-lg-6 text-lg-right">
 								<ul>
