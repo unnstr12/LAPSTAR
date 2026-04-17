@@ -46,6 +46,14 @@
   margin-bottom: 30px;
   overflow: hidden;
 }
+.dark-theme .filter-container {
+      background: #171a22;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      border: 0px solid #eaeaea;
+      margin-bottom: 30px;
+      overflow: hidden;
+}
 
 /* Nút xóa tất cả bộ lọc */
 .filter-header {
@@ -229,6 +237,7 @@
 }
 
 .price-range-track {
+  background: #ddd;
   position: absolute;
   height: 5px;
   width: 100%;
@@ -261,7 +270,7 @@
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .sorting-options {
     width: 100%;
     overflow-x: auto;
@@ -273,17 +282,17 @@
   .filter-container {
     margin-bottom: 20px;
   }
-  
+
   .sort-btn {
     padding: 6px 10px;
     font-size: 12px;
   }
-  
+
   .price-input-group {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .price-separator {
     display: none;
   }
@@ -323,9 +332,9 @@
 	.filter-buttons {
 		flex-direction: column;
 	}
-	
+
 	.filter-buttons .admin-btn {
 		flex: none;
 		width: 100%;
 	}
-} 
+}

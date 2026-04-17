@@ -4,7 +4,7 @@
 @media all and (min-width: 1600px) {
 	.navbar-area .nav-container {
 		padding: 16px 12px;
-	}	
+	}
 	.banner-area-2 .banner-area-inner .thumb {
 		margin-top: 50px;
 	}
@@ -28,7 +28,7 @@
 		height: 100%;
 		aspect-ratio: 4;
 	}
-	
+
 	.banner-slide-link,
 	.banner-slide-image {
 		width: 100%;
@@ -109,7 +109,7 @@
 	}
 	.single-about-wrap {
 		padding: 50px 13px 26px;
-	} 
+	}
 	.single-about-wrap h5,
 	.all-isotope-item .item-details h4 {
 		font-size: 18px;
@@ -196,7 +196,7 @@
 	}
 	.blog-details-page-inner .related-post .recent-post-wrap .post-details .meta span {
 		font-size: 12px;
-	} 
+	}
 	.blog-details-page-inner .related-post .recent-post-wrap .post-details h5 a {
 		font-size: 18px;
 	}
@@ -275,7 +275,7 @@
 	.toggle-btn {
 		background: #fff;
 		border-radius: 5px;
-	} 
+	}
 	.toggle-btn .icon-left {
 		left: 9px;
 		top: 19px;
@@ -292,13 +292,13 @@
 	}
 	.navbar-area.navbar-area-fixed .responsive-mobile-menu {
 		top: 17px;
-	} 
+	}
 	.navbar-area .nav-container .navbar-collapse .navbar-nav {
 		margin-top: 37px;
 	}
 	.banner-area {
-	  padding-top: 120px; 
-	  padding-bottom: 20px; 
+	  padding-top: 120px;
+	  padding-bottom: 20px;
 	}
 	.banner-inner h2 {
 		font-size: 40px;
@@ -322,7 +322,7 @@
 	.copyright-area ul li:first-child {
 		margin-left: 0;
 	}
-	.navbar-area-2.navbar-area-fixed .responsive-mobile-menu { 
+	.navbar-area-2.navbar-area-fixed .responsive-mobile-menu {
 		top: 21px;
 	}
 	.banner-area.banner-area-2 .banner-area-inner .thumb {
@@ -336,7 +336,7 @@
 		margin-bottom: 50px;
 	}
 	.single-customer-wrap.nesting {
-		margin: 0 0 30px 0; 
+		margin: 0 0 30px 0;
 	}
 	.banner-area.banner-area-2 .banner-area-inner .form-area {
 	    margin-bottom: -19%;
@@ -380,16 +380,13 @@
 	.product-buttons-container {
 		gap: 10px;
 	}
-	.product-tab, 
+	.product-tab,
 	.single-product-wrap .thumb img,
 	.product-sidebar {
 		border-radius: 12px !important;
 	}
 	.product-main-name {
 		font-size: 1.5rem;
-	}
-	.product-sidebar {
-		padding: 20px;
 	}
 	.widget-cart-content .price {
 		font-size: 1.8rem;
@@ -441,7 +438,7 @@
 	.banner-area.banner-area-2 .banner-area-inner .thumb {
 		display: none;
 	}
-	.banner-area-inner form { 
+	.banner-area-inner form {
 		margin-top: 35px;
 	}
 	.banner-area.banner-area-2 .banner-area-inner .form-area {
@@ -656,7 +653,7 @@
 	}
 	.banner-area-inner form .form-control {
 		padding: 0 83px 0 20px;
-	} 
+	}
 	.section-title h2 {
 	    font-size: 34px;
 	}
@@ -670,7 +667,7 @@
 	}
 	.single-blog-inner .single-blog-details .meta span {
 	    margin-right: 15px;
-	} 
+	}
 	.single-blog-inner-3 {
 	    padding: 0px 30px;
 	}
@@ -787,9 +784,6 @@
 		padding: 8px 15px;
 		font-size: 15px;
 	}
-	.product-sidebar {
-		padding: 20px;
-	}
 	.product-main-name {
 		font-size: 1.4rem;
 	}
@@ -829,55 +823,55 @@
         padding-top: 80px;
         padding-bottom: 60px;
     }
-    
+
     .product-tab {
         padding: 20px;
     }
-    
+
     .product-tab .nav-pills .nav-link {
         padding: 8px 15px;
         font-size: 15px;
     }
-    
+
     .product-sidebar {
         padding: 20px;
     }
-    
+
     .product-main-name {
         font-size: 1.4rem;
     }
-    
+
     .widget-cart-content .price {
         font-size: 1.7rem;
         margin-bottom: 25px;
     }
-    
+
     .product-buttons-container {
         flex-direction: column;
     }
-    
+
     .product-sidebar .add-to-cart-btn,
     .product-sidebar .buy-now-btn {
         height: 44px;
         line-height: 44px;
     }
-    
+
     .specs-list .spec-item {
         flex-direction: column;
         align-items: flex-start;
         padding: 10px 0;
     }
-    
+
     .spec-key {
         margin-bottom: 4px;
         font-size: 14px;
     }
-    
+
     .spec-value {
         text-align: left;
         font-size: 14px;
     }
-    
+
     .product-extra-info {
         margin-top: 25px;
     }
@@ -917,7 +911,7 @@
 	}
 	.single-blog-inner .single-blog-details {
 	    margin: 20px 0;
-	} 
+	}
 	.single-blog-inner .blockquote p {
 	    font-size: 16px;
 	}
@@ -932,7 +926,7 @@
 		display: block;
 	}
 	.blog-details-page-inner .blog-comment .media .media-body {
-		margin: 20px 0 0 0; 
+		margin: 20px 0 0 0;
 	}
 	.blog-details-page-inner .comment-form {
 	    padding: 28px 30px 40px;
@@ -1005,7 +999,7 @@
 	}
 	.breadcrumb-area .page-title {
 	    font-size: 36px;
-	} 
+	}
 	.all-item-area .filter-area .isotope-filters {
 		display: block;
 	}

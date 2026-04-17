@@ -8,6 +8,8 @@
     <title>LapStar - Top laptop store chain</title>
 
     <link rel=icon href=%PUBLIC_URL%/assets/img/favicon.png sizes="20x20" type="image/png">
+    <!-- Inline theme script (set early to avoid FOUC) -->
+    <script> (function(){ try{ var t=localStorage.getItem('theme'); if(!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) t='dark'; if(t==='dark') document.documentElement.classList.add('dark-theme'); }catch(e){} })(); </script>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/vendor.css">
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/nice-select.css">

@@ -2,6 +2,15 @@
 .profile-page-area {
     background-color: #f9f9f9;
     min-height: 100vh;
+    color: black;
+}
+.dark-theme .profile-page-area {
+    background-color: #071427;
+    min-height: 100vh;
+}
+.dark-theme .profile-page-area .card {
+    background-color: #02193c;
+    min-height: 400px;
 }
 
 /* Sidebar styles */
@@ -123,6 +132,9 @@
     color: #444;
     margin-bottom: 8px;
     display: block;
+}
+.dark-theme .profile-form .form-control {
+    background-color: #17213c;
 }
 
 .profile-form .form-control.is-invalid {

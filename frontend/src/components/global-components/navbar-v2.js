@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
+import { useTheme } from '../../context/ThemeContext';
 import './navbar-v2.css';
 
 const NavbarV2 = () => {
 	const publicUrl = process.env.PUBLIC_URL + '/';
 	const { isAuthenticated, currentUser, logout } = useAuth();
 	const history = useHistory();
+	const { theme, toggleTheme } = useTheme();
 	const [categories, setCategories] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [searchQuery, setSearchQuery] = useState('');
@@ -150,6 +152,57 @@ const NavbarV2 = () => {
 		history.push('/');
 	};
 
+	// Helper render kết quả tìm kiếm (tách ra để tránh nested ternary trong JSX)
+	const renderSearchResultsContent = () => {
+		if (isSearching) {
+			return (
+				<div className="search-loading">
+					<div className="spinner-border spinner-border-sm" role="status">
+						<span className="sr-only">Đang tìm...</span>
+					</div>
+					<span>Đang tìm kiếm...</span>
+				</div>
+			);
+		}
+
+		if (!searchResults || searchResults.length === 0) {
+			return (
+				<div className="search-no-results">
+					<p>Không tìm thấy sản phẩm phù hợp</p>
+				</div>
+			);
+		}
+
+		return (
+			<>
+				<div className="row">
+					{searchResults.map(product => (
+						<div className="col-12 search-result-item" key={product.productId} onClick={() => handleSearchResultClick(product.productId)}>
+							<div className="search-result-image">
+								<img src={getImageUrl(product)} alt={product.productName} />
+							</div>
+							<div className="search-result-info">
+								<h5 className="search-result-name">{product.productName} {product.sku}</h5>
+								<p className="search-result-price">{formatPrice(product.price)}</p>
+							</div>
+						</div>
+					))}
+				</div>
+				<div className="search-results-footer">
+					<button
+						className="admin-btn search-view-all"
+						onClick={() => {
+							setShowSearchResults(false);
+							history.push(`/search?keyword=${encodeURIComponent(searchQuery)}`);
+						}}
+					>
+						Xem tất cả kết quả
+					</button>
+				</div>
+			</>
+		);
+	};
+
 	return (
 		<div>
 			<div className="navbar-area navbar-area-2 go-top">
@@ -225,45 +278,7 @@ const NavbarV2 = () => {
 										{showSearchResults && (
 											<div className="search-results-dropdown-wrapper">
 												<div className="search-results-dropdown">
-													{isSearching ? (
-														<div className="search-loading">
-															<div className="spinner-border spinner-border-sm" role="status">
-																<span className="sr-only">Đang tìm...</span>
-															</div>
-															<span>Đang tìm kiếm...</span>
-														</div>
-													) : searchResults.length > 0 ? (
-														<>
-															<div className="row">
-																{searchResults.map(product => (
-																	<div className="col-12 search-result-item" key={product.productId} onClick={() => handleSearchResultClick(product.productId)}>
-																		<div className="search-result-image">
-																			<img src={getImageUrl(product)} alt={product.productName} />
-																		</div>
-																		<div className="search-result-info">
-																			<h5 className="search-result-name">{product.productName} {product.sku}</h5>
-																			<p className="search-result-price">{formatPrice(product.price)}</p>
-																		</div>
-																	</div>
-																))}
-															</div>
-															<div className="search-results-footer">
-																<button
-																	className="admin-btn search-view-all"
-																	onClick={() => {
-																		setShowSearchResults(false);
-																		history.push(`/search?keyword=${encodeURIComponent(searchQuery)}`);
-																	}}
-																>
-																	Xem tất cả kết quả
-																</button>
-															</div>
-														</>
-													) : (
-														<div className="search-no-results">
-															<p>Không tìm thấy sản phẩm phù hợp</p>
-														</div>
-													)}
+													{renderSearchResultsContent()}
 												</div>
 											</div>
 										)}
@@ -275,6 +290,11 @@ const NavbarV2 = () => {
 						<div className="nav-right-part nav-right-part-desktop">
 							<ul>
 								<li><Link to="/cart"><img src={publicUrl + "assets/img/icon/2m.png"} alt="cart" /></Link></li>
+								<li>
+									<button onClick={toggleTheme} className="theme-toggle" aria-label="Chuyển giao diện">
+										{theme === 'dark' ? <i className="fa fa-sun" /> : <i className="fa fa-moon" />}
+									</button>
+								</li>
 								{isAuthenticated ? (
 									<li className="menu-item-has-children user-dropdown">
 										<a href="#">
@@ -299,6 +319,10 @@ const NavbarV2 = () => {
 							) : (
 								<Link to="/login" className="admin-btn admin-btn-primary">Đăng nhập</Link>
 							)}
+							{/* Mobile theme toggle */}
+							<button onClick={toggleTheme} className="theme-toggle mobile-theme-toggle" aria-label="Chuyển giao diện">
+								{theme === 'dark' ? <i className="fa fa-moon" /> : <i className="fa fa-sun" />}
+							</button>
 						</div>
 					</div>
 				</nav>
@@ -308,3 +332,4 @@ const NavbarV2 = () => {
 }
 
 export default NavbarV2;
+

@@ -196,7 +196,7 @@ const AdminLayout = ({ children }) => {
         </nav>
 
         <div className="sidebar-footer">
-          {!isSidebarCollapsed && <span>© 2025 LapStar</span>}
+          {!isSidebarCollapsed && <span>© 2026 LapStar</span>}
           <a href="#" onClick={handleLogout} title="Đăng xuất" className={isLoggingOut ? 'disabled-link' : ''}>
             <i className="fa fa-sign-out-alt"></i>
             {isLoggingOut && <span className="logout-spinner"></span>}
