@@ -5,20 +5,27 @@ import com.nah.backend.dto.order.OrderDTO;
 import com.nah.backend.dto.order.request.CreateOrderRequest;
 import com.nah.backend.dto.order.request.ReturnOrderRequest;
 import com.nah.backend.model.Order;
+import com.nah.backend.service.InvoiceService;
 import com.nah.backend.service.OrderService;
 import com.nah.backend.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -29,6 +36,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
+    private final InvoiceService invoiceService;
 
     @PostMapping
     public ResponseEntity<?> createOrder(@Valid @RequestBody CreateOrderRequest request) {
@@ -135,9 +143,37 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/{orderId}/invoice")
+    public ResponseEntity<?> downloadInvoice(@PathVariable Integer orderId) {
+        try {
+            Integer userId = getCurrentUserId();
+            OrderDTO order = orderService.getOrderById(orderId);
+
+            if (order.getUserId() == null || !order.getUserId().equals(userId)) {
+                return ResponseEntity.badRequest().body(ApiResponse.error("Ban khong co quyen tai hoa don nay"));
+            }
+
+            Path invoicePath = invoiceService.generateInvoicePdf(order);
+            return buildInvoiceResponse(invoicePath, "invoice-" + orderId + ".pdf");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Khong the tai hoa don: " + e.getMessage()));
+        }
+    }
+
+    private ResponseEntity<?> buildInvoiceResponse(Path invoicePath, String fileName) throws IOException {
+        InputStreamResource resource = new InputStreamResource(Files.newInputStream(invoicePath));
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .contentType(MediaType.APPLICATION_PDF)
+                .contentLength(Files.size(invoicePath))
+                .body(resource);
+    }
+
     private Integer getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         return userService.findByEmail(email).getUserId();
     }
-} 
+}

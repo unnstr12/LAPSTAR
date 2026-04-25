@@ -246,6 +246,32 @@ const CheckoutWithHooks = (props) => {
         }
     };
 
+    const downloadInvoice = async (order) => {
+        if (!order || !order.orderId) return;
+
+        try {
+            const response = await axios.get(`/api/guest-orders/${order.orderId}/invoice`, {
+                params: {
+                    email: order.userEmail || order.email || orderData.email,
+                    phoneNumber: order.phoneNumber || orderData.phoneNumber
+                },
+                responseType: 'blob'
+            });
+
+            const blob = new Blob([response.data], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `invoice-${order.orderId}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            showToast(error.response?.data?.message || 'Không thể tải hóa đơn.', 'error');
+        }
+    };
+
     // Lấy thuộc tính sản phẩm
     const getProductAttributes = (productId) => {
         const productDetail = productDetails[productId];
@@ -807,6 +833,12 @@ const CheckoutWithHooks = (props) => {
                                 </div>
                                 
                                 <div className="order-popup-actions">
+                                    <button
+                                        className="admin-btn admin-btn-secondary"
+                                        onClick={() => downloadInvoice(orderDetails)}
+                                    >
+                                        <i className="fa fa-file-pdf-o mr-2"></i>Tải hóa đơn
+                                    </button>
                                     <button className="admin-btn admin-btn-primary" onClick={closeSuccessPopup}>
                                         <i className="fa fa-home mr-2"></i>Tiếp tục mua sắm
                                     </button>
@@ -1072,4 +1104,4 @@ const CheckoutWithHooks = (props) => {
         );
 };
 
-export default withRouter(CheckoutWithHooks); 
+export default withRouter(CheckoutWithHooks);

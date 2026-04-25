@@ -189,6 +189,28 @@ class OrderStatus extends Component {
             });
     };
 
+    downloadInvoice = (orderId) => {
+        if (!orderId) return;
+
+        axios.get(`/api/orders/${orderId}/invoice`, { responseType: 'blob' })
+            .then(response => {
+                const blob = new Blob([response.data], { type: 'application/pdf' });
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `invoice-${orderId}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                this.setState({
+                    error: error.response?.data?.message || 'Không thể tải hóa đơn. Vui lòng thử lại sau.'
+                });
+            });
+    };
+
     // Định dạng trạng thái đơn hàng
     formatOrderStatus = (status) => {
         const statusMap = {
@@ -555,6 +577,13 @@ class OrderStatus extends Component {
                         <i className="fa fa-credit-card mr-1"></i> Thanh toán qua VNPay
                     </button>
                 )}
+                <button
+                    type="button"
+                    className="admin-btn admin-btn-secondary"
+                    onClick={() => this.downloadInvoice(orderDetails.orderId)}
+                >
+                    <i className="fa fa-file-pdf-o mr-2"></i>Tải hóa đơn
+                </button>
                 {orderDetails.userId && (
                     <Link to={`/profile?tab=orders&orderId=${orderDetails.orderId}`} className="admin-btn admin-btn-primary">
                         <i className="fa fa-user-circle mr-2"></i>Xem trong tài khoản của tôi

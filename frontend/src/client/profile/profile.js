@@ -628,6 +628,29 @@ class Profile extends Component {
         }
     };
 
+    downloadInvoice = (orderId) => {
+        if (!orderId) {
+            this.showToast('Không tìm thấy mã đơn hàng', 'error');
+            return;
+        }
+
+        axios.get(`/api/orders/${orderId}/invoice`, { responseType: 'blob' })
+            .then(response => {
+                const blob = new Blob([response.data], { type: 'application/pdf' });
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `invoice-${orderId}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                this.showToast(error.response?.data?.message || 'Không thể tải hóa đơn', 'error');
+            });
+    };
+
     render() {
         const {
             user,
@@ -1301,6 +1324,9 @@ class Profile extends Component {
                                             <i className="fa fa-credit-card mr-1"></i> Thanh toán qua VNPay
                                         </button>
                                     )}
+                                    <button type="button" className="admin-btn admin-btn-secondary" onClick={() => this.downloadInvoice(orderDetails?.orderId)}>
+                                        <i className="fa fa-file-pdf-o mr-1"></i> Tải hóa đơn
+                                    </button>
                                     <button type="button" className="admin-btn admin-btn-secondary" onClick={this.closeOrderDetailsModal}>
                                         <i className="fa fa-times mr-1"></i> Đóng
                                     </button>
@@ -1319,4 +1345,4 @@ class Profile extends Component {
     }
 }
 
-export default withAuth(Profile, { requiredRoles: ['USER', 'ADMIN', 'SELLER'] }); 
+export default withAuth(Profile, { requiredRoles: ['USER', 'ADMIN', 'SELLER'] });

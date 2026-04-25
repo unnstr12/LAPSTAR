@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `lapstar` /*!40100 DEFAULT CHARACTER SET utf8mb4 
 USE `lapstar`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: laptopshop
+-- Host: localhost    Database: lapstar
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
