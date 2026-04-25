@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../utils/axiosConfig';
 import '../css/product-list-admin.css';
@@ -22,6 +22,7 @@ const ProductList = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [exporting, setExporting] = useState(false);
 
   const showToast = (message, type = 'success') => {
     const newToast = {
@@ -248,6 +249,104 @@ const ProductList = () => {
     return `${baseUrl}/${imagePath}`;
   };
 
+  const exportProducts = async () => {
+    if (exporting) return;
+
+    setExporting(true);
+
+    try {
+      const exportPageSize = 200;
+      let pageNo = 0;
+      let totalPagesLocal = 1;
+      const allProducts = [];
+
+      while (pageNo < totalPagesLocal) {
+        const response = await axios.get('/api/products/paged', {
+          params: {
+            pageNo,
+            pageSize: exportPageSize
+          }
+        });
+
+        const pageData = response.data?.data;
+        if (!pageData || !Array.isArray(pageData.content)) {
+          break;
+        }
+
+        allProducts.push(...pageData.content);
+        totalPagesLocal = pageData.totalPages || 0;
+        pageNo += 1;
+      }
+
+      if (allProducts.length === 0) {
+        showToast('Danh sách sản phẩm trống', 'error');
+        return;
+      }
+
+      const headers = [
+        'ID',
+        'Tên sản phẩm',
+        'Giá bán',
+        'Giá khuyến mãi',
+        'Danh mục',
+        'Thương hiệu',
+        'Số lượng tồn',
+        'Trạng thái',
+        'Câp nhật cuối'
+      ];
+
+      const escapeCsv = (value) => {
+        if (value === null || value === undefined) return '';
+        return `"${String(value).replace(/"/g, '""')}"`;
+      };
+
+      const rows = allProducts.map(product => {
+        const stock = product.stockQuantity ?? 0;
+
+        return [
+          product.productId,
+          product.productName,
+          product.price?.toLocaleString('vi-VN'),
+          product.discountPrice?.toLocaleString('vi-VN') || '',
+          product.category?.categoryName || '-',
+          product.brand?.brandName || '-',
+          stock,
+          stock > 0 ? 'Còn hàng' : 'Hết hàng',
+          formatDate(product.updatedAt)
+        ].map(escapeCsv).join(',');
+      });
+
+      const csvContent = [
+        headers.map(escapeCsv).join(','),
+        ...rows
+      ].join('\n');
+
+      const BOM = '\uFEFF';
+
+      const blob = new Blob([BOM + csvContent], {
+        type: 'text/csv;charset=utf-8;'
+      });
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `tat-ca-san-pham-${new Date().toISOString().slice(0, 10)}.csv`;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      window.URL.revokeObjectURL(url);
+
+      showToast(`Đã xuất ${allProducts.length} sản phẩm`, 'success');
+    } catch (error) {
+      showToast(error.response?.data?.message || 'Không thể xất danh sách sản phẩm!!!', 'error');
+    } finally {
+      setExporting(false);
+    }
+  };
+
   if (loading && products.length === 0) {
     return (
       <div className="admin-product-list-page">
@@ -337,6 +436,14 @@ const ProductList = () => {
           <Link to="/admin/products/add" className="admin-btn admin-btn-primary">
             <i className="fa fa-plus"></i> Thêm Sản phẩm
           </Link>
+          <button
+            className="admin-btn admin-btn-secondary"
+            onClick={exportProducts}
+            disabled={exporting}
+            style={{ marginLeft: '10px' }}
+          >
+            <i className="fa fa-download"></i> {exporting ? 'Đang xuất...' : 'Xuất danh sách'}
+          </button>
         </div>
       </div>
 
