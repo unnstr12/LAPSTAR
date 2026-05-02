@@ -21,6 +21,7 @@ const UserList = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [exporting, setExporting] = useState(false);
   const history = useHistory();
 
   // Danh sách trường có thể sắp xếp
@@ -151,6 +152,105 @@ const UserList = () => {
   const renderSortIcon = (field) => {
     if (sortBy !== field) return <i className="fa fa-sort text-muted"></i>;
     return sortDir === 'asc' ? <i className="fa fa-sort-up"></i> : <i className="fa fa-sort-down"></i>;
+  };
+
+  const exportUsers = async () => {
+    if (exporting) return;
+
+    setExporting(true);
+
+    try {
+      const exportPageSize = 200;
+      let page = 0;
+      let totalPagesLocal = 1;
+      const allUsers = [];
+
+      while (page < totalPagesLocal) {
+        const response = await axios.get('/api/admin/users/paged', {
+          params: {
+            pageNo: page,
+            pageSize: exportPageSize,
+            sortBy,
+            sortDir,
+            searchKeyword: activeSearchTerm,
+            roleId: selectedRoleId
+          }
+        });
+
+        const pageData = response.data?.data;
+
+        if (!pageData || !Array.isArray(pageData.content)) {
+          break;
+        }
+
+        allUsers.push(...pageData.content);
+        totalPagesLocal = pageData.totalPages || 0;
+        page += 1;
+      }
+
+      if (allUsers.length === 0) {
+        showToast('Danh sách người dùng trống', 'error');
+        return;
+      }
+
+      const headers = [
+        'ID',
+        'Email',
+        'Họ tên',
+        'Số điện thoại',
+        'Vai trò',
+        'Ngày tạo',
+        'Trạng thái'
+      ];
+
+      const escapeCsv = (value) => {
+        if (value === null || value === undefined) return '';
+        return `"${String(value).replace(/"/g, '""')}"`;
+      };
+
+      const rows = allUsers.map(user => {
+        const statusLabel = user.isDeleted ? 'Đã khóa' : 'Hoạt động';
+
+        return [
+          user.userId,
+          user.email || '-',
+          user.fullName || '-',
+          user.phoneNumber || '-',
+          user.roleName || '-',
+          formatDate(user.createdAt),
+          statusLabel
+        ].map(escapeCsv).join(',');
+      });
+
+      const csvContent = [
+        headers.map(escapeCsv).join(','),
+        ...rows
+      ].join('\n');
+
+      const BOM = '\uFEFF';
+
+      const blob = new Blob([BOM + csvContent], {
+        type: 'text/csv;charset=utf-8;'
+      });
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `nguoi-dung-${new Date().toISOString().slice(0, 10)}.csv`;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      window.URL.revokeObjectURL(url);
+
+      showToast(`Đã xuất ${allUsers.length} người dùng`, 'success');
+    } catch (error) {
+      showToast(error.response?.data?.message || 'Không thể xuất danh sách người dùng', 'error');
+    } finally {
+      setExporting(false);
+    }
   };
 
   const openConfirmModal = (user) => {
@@ -311,6 +411,13 @@ const UserList = () => {
               <i className="fa fa-search"></i>
             </button>
           </div>
+          <button
+            className="admin-btn admin-btn-secondary"
+            onClick={exportUsers}
+            disabled={exporting}
+          >
+            <i className="fa fa-download"></i> {exporting ? 'Đang xuất...' : 'Xuất danh sách'}
+          </button>
         </div>
       </div>
 
