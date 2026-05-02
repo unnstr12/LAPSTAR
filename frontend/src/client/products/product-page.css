@@ -338,3 +338,65 @@
 		width: 100%;
 	}
 }
+
+.all-isotope-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.all-isotope-item .thumb {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.all-isotope-item .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.all-isotope-item .thumb {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.all-isotope-item .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.all-isotope-item .item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.all-isotope-item h6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 40px;
+}
+
+
+.dark-theme .all-isotope-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #020c1b;
+}
