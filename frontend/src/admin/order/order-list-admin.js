@@ -20,6 +20,7 @@ const OrderList = () => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [exporting, setExporting] = useState(false);
   const history = useHistory();
 
   // Danh sách trường có thể sắp xếp
@@ -231,6 +232,118 @@ const OrderList = () => {
     return sortDir === 'asc' ? <i className="fa fa-sort-up"></i> : <i className="fa fa-sort-down"></i>;
   };
 
+  const exportOrders = async () => {
+    if (exporting) return;
+
+    setExporting(true);
+
+    try {
+      const exportPageSize = 200;
+      let page = 0;
+      let totalPagesLocal = 1;
+      const allOrders = [];
+
+      while (page < totalPagesLocal) {
+        const params = {
+          page,
+          size: exportPageSize,
+          sortBy,
+          sortDir
+        };
+
+        if (activeSearchTerm) {
+          params.keyword = activeSearchTerm;
+        }
+
+        if (selectedStatus) {
+          params.status = selectedStatus;
+        }
+
+        if (startDate) {
+          params.startDate = startDate;
+        }
+
+        if (endDate) {
+          params.endDate = endDate;
+        }
+
+        const response = await axios.get('/api/admin/orders', { params });
+        const pageData = response.data?.data;
+
+        if (!pageData || !Array.isArray(pageData.content)) {
+          break;
+        }
+
+        allOrders.push(...pageData.content);
+        totalPagesLocal = pageData.totalPages || 0;
+        page += 1;
+      }
+
+      if (allOrders.length === 0) {
+        showToast('Danh sách đơn hàng trống', 'error');
+        return;
+      }
+
+      const headers = [
+        'Mã đơn hàng',
+        'Khách hàng',
+        'Email',
+        'Số điện thoại',
+        'Ngày đặt',
+        'Tổng tiền',
+        'Trạng thái'
+      ];
+
+      const escapeCsv = (value) => {
+        if (value === null || value === undefined) return '';
+        return `"${String(value).replace(/"/g, '""')}"`;
+      };
+
+      const rows = allOrders.map(order => {
+        const statusLabel = statusOptions.find(opt => opt.value === order.status)?.label || order.status;
+
+        return [
+          order.orderId,
+          order.fullName || '-',
+          order.userEmail || '-',
+          order.phoneNumber || '-',
+          formatDate(order.createdAt),
+          order.totalAmount ?? '',
+          statusLabel
+        ].map(escapeCsv).join(',');
+      });
+
+      const csvContent = [
+        headers.map(escapeCsv).join(','),
+        ...rows
+      ].join('\n');
+
+      const BOM = '\uFEFF';
+
+      const blob = new Blob([BOM + csvContent], {
+        type: 'text/csv;charset=utf-8;'
+      });
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `don-hang-${new Date().toISOString().slice(0, 10)}.csv`;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      window.URL.revokeObjectURL(url);
+
+      showToast(`Đã xuất ${allOrders.length} đơn hàng`, 'success');
+    } catch (error) {
+      showToast(error.response?.data?.message || 'Không thể xuất danh sách đơn hàng', 'error');
+    } finally {
+      setExporting(false);
+    }
+  };
+
   // Hiển thị loading
   if (loading && orders.length === 0) {
     return (
@@ -286,6 +399,13 @@ const OrderList = () => {
               <i className="fa fa-search"></i>
             </button>
           </div>
+          <button
+            className="admin-btn admin-btn-secondary"
+            onClick={exportOrders}
+            disabled={exporting}
+          >
+            <i className="fa fa-download"></i> {exporting ? 'Đang xuất...' : 'Xuất danh sách'}
+          </button>
         </div>
       </div>
 
