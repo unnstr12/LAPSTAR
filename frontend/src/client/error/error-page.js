@@ -34,9 +34,9 @@ class Error extends Component {
 						<p className="mb-2">Cần hỗ trợ? Liên hệ ngay:</p>
 						<p className="mb-0">
 						<i className="fa fa-phone mr-2" style={{color: 'var(--main-color)'}}></i>
-						<strong>Hotline: 0396006368</strong> | 
+						<strong>Hotline: 0816557837</strong> |
 						<i className="fa fa-envelope ml-2 mr-2" style={{color: 'var(--main-color)'}}></i>
-						<strong>anhuypc147@gmail.com</strong>
+						<strong>haison12092004@gmail.com</strong>
 						</p>
 					</div>
 					</div>

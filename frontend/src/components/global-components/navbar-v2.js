@@ -255,6 +255,7 @@ const NavbarV2 = () => {
 								<li className="menu-item-has-children">
 									<Link to="#">Khám phá</Link>
 									<ul className="sub-menu">
+										<li><Link to="/blog">Blog</Link></li>
 										<li><Link to="/contact">Liên hệ</Link></li>
 										<li><Link to="/policy">Chính sách</Link></li>
 									</ul>

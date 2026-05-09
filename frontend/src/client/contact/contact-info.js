@@ -37,8 +37,8 @@ class ContactInfo extends Component {
 						<img src={publicUrl+"assets/img/icon/envelope.png"} alt="img" />
 					</div>
 					<h4>Email liên hệ</h4>
-					<p>Email chính: nguyenhaison12092004@gmail.com</p>
-					<p>Hỗ trợ kỹ thuật: nguyenhaison12092004@gmail.com</p>
+					<p>Email chính: son12092004@gmail.com</p>
+					<p>Hỗ trợ kỹ thuật: son12092004@gmail.com</p>
 					</div>
 				</div>
 				</div>

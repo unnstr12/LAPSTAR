@@ -183,4 +183,7 @@
         display: block;
         width: 100px;
     }
-} 
+}
+.page-list {
+    color: #fff;
+}

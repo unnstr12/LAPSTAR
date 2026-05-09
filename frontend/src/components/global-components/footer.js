@@ -51,8 +51,8 @@ class Footer_v1 extends Component {
 								<ul className="social-area">
 									<li><a href="https://www.facebook.com/unnstr12"><i className="fab fa-facebook-f" /></a></li>
 									<li><a href="https://www.youtube.com/@istarhaui"><i className="fab fa-youtube" /></a></li>
-									<li><a href="tel:0396006368"><i className="fas fa-phone" /></a></li>
-									<li><a href="mailto:anhuypc147@gmail.com"><i className="fas fa-envelope" /></a></li>
+									<li><a href="tel:0816557837"><i className="fas fa-phone" /></a></li>
+									<li><a href="mailto:haison12092004@gmail.com"><i className="fas fa-envelope" /></a></li>
 								</ul>
 							</div>
 						</div>
