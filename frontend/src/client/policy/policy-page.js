@@ -76,7 +76,7 @@ class Policy extends Component {
 
 					<p>LapStar có quyền thay đổi các điều khoản và chính sách này mà không cần báo trước. Phiên bản cập nhật sẽ được đăng tải trên website và có hiệu lực ngay lập tức.</p>
 
-					<p className="m-0"><em>Cập nhật lần cuối: Tháng 05/2025. Bằng việc sử dụng dịch vụ của LapStar, quý khách đã đồng ý với toàn bộ các điều khoản và chính sách trên.</em></p>
+					<p className="m-0"><em>Cập nhật lần cuối: Tháng 05/2026. Bằng việc sử dụng dịch vụ của LapStar, quý khách đã đồng ý với toàn bộ các điều khoản và chính sách trên.</em></p>
 				</div>
 				</div>
 			</div>

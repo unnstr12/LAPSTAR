@@ -4,13 +4,13 @@ import parse from 'html-react-parser';
 import axios from 'axios';
 import './product-details.css';
 import { useCart } from '../../context/CartContext';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 
 const ProductDetails = () => {
     const { variantId } = useParams();
     const history = useHistory();
     const { addToCart } = useCart();
-    const { isAuthenticated } = useAuth();
+    // const { isAuthenticated } = useAuth();
     const [product, setProduct] = useState(null);
     const [similarProducts, setSimilarProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -145,17 +145,17 @@ const ProductDetails = () => {
 
     const handleBuyNow = async () => {
         if (!product) return;
-        if (!isAuthenticated) {
-            showToast('Cần đăng nhập để mua hàng', 'error');
-            history.replace({
-                pathname: '/login',
-                state: {
-                    from: { pathname: '/cart' },
-                    message: 'Cần đăng nhập để mua hàng'
-                }
-            });
-            return;
-        }
+        // if (!isAuthenticated) {
+        //     showToast('Cần đăng nhập để mua hàng', 'error');
+        //     history.replace({
+        //         pathname: '/login',
+        //         state: {
+        //             from: { pathname: '/cart' },
+        //             message: 'Cần đăng nhập để mua hàng'
+        //         }
+        //     });
+        //     return;
+        // }
         try {
             const result = await addToCart(variantId, 1);
             if (result.success) {

@@ -29,7 +29,7 @@ public class ChatbotServiceImpl implements ChatbotService {
     private final ProductAttributeValueRepository productAttributeValueRepository;
     private final RestTemplate restTemplate;
 
-    private static final String GEMINI_API_URL = "http://localhost:8001/ask";
+    private static final String GROQ_API_URL = "http://localhost:8001/ask";
 
     @Override
     public Map<String, Object> processQuestion(String question) {
@@ -42,31 +42,31 @@ public class ChatbotServiceImpl implements ChatbotService {
             // Lấy thông tin tất cả sản phẩm làm context
             String productContext = getProductContext();
 
-            // Tạo request gửi đến FastAPI Gemini service
-            Map<String, Object> geminiRequest = new HashMap<>();
-            geminiRequest.put("question", question);
-            geminiRequest.put("context", productContext);
+            // Tạo request gửi đến Grog service
+            Map<String, Object> groqRequest = new HashMap<>();
+            groqRequest.put("question", question);
+            groqRequest.put("context", productContext);
             
             // Thêm context từ các câu hỏi trước đó
             if (previousQuestions != null && !previousQuestions.isEmpty()) {
                 String conversationContext = buildConversationContext(previousQuestions);
-                geminiRequest.put("conversationHistory", conversationContext);
+                groqRequest.put("conversationHistory", conversationContext);
                 logger.info("Thêm conversation context với {} câu hỏi trước đó", previousQuestions.size());
             }
 
-            // Gọi FastAPI service
+            // Gọi GroqAPI service
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(geminiRequest, headers);
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(groqRequest, headers);
 
             @SuppressWarnings("unchecked")
-            Map<String, String> geminiResponse = restTemplate.postForObject(GEMINI_API_URL, entity, Map.class);
+            Map<String, String> groqResponse = restTemplate.postForObject(GROQ_API_URL, entity, Map.class);
 
-            if (geminiResponse == null || geminiResponse.get("answer") == null) {
-                throw new RuntimeException("Không nhận được phản hồi từ AI service");
+            if (groqResponse == null || groqResponse.get("answer") == null) {
+                throw new RuntimeException("Không nhận được phản hồi từ Groq service");
             }
 
-            String aiAnswer = geminiResponse.get("answer");
+            String aiAnswer = groqResponse.get("answer");
             logger.info("AI response gốc: {}", aiAnswer);
 
             // Extract product IDs từ AI response
@@ -298,7 +298,7 @@ public class ChatbotServiceImpl implements ChatbotService {
     }
 
     /**
-     * Xây dựng context từ các câu hỏi trước đó
+     * Dựng context theo lịch sử trò chuyện
      */
     private String buildConversationContext(List<String> previousQuestions) {
         if (previousQuestions == null || previousQuestions.isEmpty()) {

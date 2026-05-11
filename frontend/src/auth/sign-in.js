@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-// import Navbar from '../components/global-components/navbar-v2';
+import Navbar from '../components/global-components/navbar-v2';
 import AuthContext from '../context/AuthContext';
 
 class SignIn extends Component {
@@ -53,10 +53,11 @@ class SignIn extends Component {
                 this.props.history.push('/admin');
             } else {
                 console.log("Đang điều hướng đến:", from.pathname);
-                if (from.pathname && from.pathname.startsWith('/admin')) {
+                if (from.pathname.startsWith('/admin')) {
+                // if (from.pathname && from.pathname.startsWith('/admin')) {
                     this.props.history.push('/admin/dashboard');
-                } else if (from && from.pathname) {
-                    this.props.history.push(from);
+                // } else if (from && from.pathname) {
+                //     this.props.history.push(from);
                 } else {
                     this.props.history.push('/');
                 }

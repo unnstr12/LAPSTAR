@@ -69,9 +69,10 @@ class Root extends Component {
 									<Route path="/blog" component={Blog} />
 									<Route path="/blog-details" component={BlogDetails} />
 									<Route path="/cart" component={Cart} />
-									<ProtectedRoute path="/checkout" message="Cần đăng nhập để mua hàng">
-										<Checkout />
-									</ProtectedRoute>
+									<Route path="/checkout" component={Checkout} />
+									{/*<ProtectedRoute path="/checkout" message="Cần đăng nhập để mua hàng">*/}
+									{/*	<Checkout />*/}
+									{/*</ProtectedRoute>*/}
 									<Route path="/order-status" component={OrderStatus} />
 									<Route path="/profile" component={Profile} />
 									<ProtectedRoute path="/admin" roles={["ADMIN", "SELLER"]}>

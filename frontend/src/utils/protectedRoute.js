@@ -3,10 +3,10 @@ import { Route, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 // Component Route bảo vệ, kiểm tra xác thực và quyền
-const ProtectedRoute = ({ children, roles, message, ...rest }) => {
+const ProtectedRoute = ({ children, roles, ...rest }) => {
   const { isAuthenticated, currentUser, loading } = useAuth();
   const history = useHistory();
-  const loginMessage = message || 'Vui lòng đăng nhập để truy cập trang này';
+  // const loginMessage = message || 'Vui lòng đăng nhập để truy cập trang này';
 
   // Thêm useEffect để kiểm tra xác thực mỗi khi vào trang protected
   useEffect(() => {
@@ -14,10 +14,11 @@ const ProtectedRoute = ({ children, roles, message, ...rest }) => {
     if (!loading && !isAuthenticated) {
       history.replace({
         pathname: '/login',
-        state: { message: loginMessage }
+          state: { message: 'Vui lòng đăng nhập để truy cập trang này' }
+        // state: { message: loginMessage }
       });
     }
-  }, [isAuthenticated, loading, history, loginMessage]);
+  }, [isAuthenticated, loading, history]);
 
   // Hiển thị loading nếu đang kiểm tra xác thực
   if (loading) {
@@ -35,7 +36,8 @@ const ProtectedRoute = ({ children, roles, message, ...rest }) => {
             <Redirect
               to={{
                 pathname: '/login',
-                state: { from: props.location, message: loginMessage }
+                // state: { from: props.location, message: loginMessage }
+                  state: { from: props.location, message: 'Vui lòng đăng nhập để truy cập trang này' }
               }}
             />
           );

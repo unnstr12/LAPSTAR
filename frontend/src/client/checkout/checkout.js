@@ -158,14 +158,14 @@ const CheckoutWithHooks = (props) => {
 
     // Submit đơn hàng
     const submitOrder = async () => {
-        if (!isAuthenticated) {
-            showToast('Cần đăng nhập để mua hàng', 'error');
-            props.history.replace({
-                pathname: '/login',
-                state: { from: props.location, message: 'Cần đăng nhập để mua hàng' }
-            });
-            return;
-        }
+        // if (!isAuthenticated) {
+        //     showToast('Cần đăng nhập để mua hàng', 'error');
+        //     props.history.replace({
+        //         pathname: '/login',
+        //         state: { from: props.location, message: 'Cần đăng nhập để mua hàng' }
+        //     });
+        //     return;
+        // }
         const errors = validateForm();
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
