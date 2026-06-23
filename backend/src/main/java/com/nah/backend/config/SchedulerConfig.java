@@ -6,5 +6,5 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableScheduling
 public class SchedulerConfig {
-    // Cấu hình được kích hoạt thông qua annotation @EnableScheduling
+
 } 

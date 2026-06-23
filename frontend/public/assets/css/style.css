@@ -2729,10 +2729,10 @@ ul {
 .dark-theme .sign-in-area p {
   color: #aaa;
 }
-.sign-in-page .sign-in-area-container .sign-in-area-wrap .sign-in-area .alert{
-  background-color: #ff6565;
-  color: #0d1741;
-}
+/*.sign-in-page .sign-in-area-container .sign-in-area-wrap .sign-in-area .alert{*/
+/*  background-color: #ff6565;*/
+/*  color: #0d1741;*/
+/*}*/
 
 /* ===== BUTTON ===== */
 .dark-theme .btn {
