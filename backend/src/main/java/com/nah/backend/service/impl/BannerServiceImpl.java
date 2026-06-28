@@ -36,7 +36,7 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public BannerDTO getBannerById(Long id) {
+    public BannerDTO getBannerById(Long i d) {
         Banner banner = bannerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy banner với id: " + id));
         return convertToDTO(banner);
